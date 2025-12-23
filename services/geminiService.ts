@@ -1,26 +1,10 @@
 import { GoogleGenAI } from "@google/genai";
 
-const apiKey = process.env.API_KEY || '';
-// Note: In a real production app, never expose API keys on the client. 
-// This should be proxied through a backend.
-// For this frontend-only demo, we assume the environment variable is available during build 
-// or the user understands this limitation.
-
-let ai: GoogleGenAI | null = null;
-
-try {
-    if (apiKey) {
-        ai = new GoogleGenAI({ apiKey });
-    }
-} catch (error) {
-    console.error("Failed to initialize Gemini client", error);
-}
+// The API key must be obtained exclusively from the environment variable process.env.API_KEY.
+// Assume this variable is pre-configured, valid, and accessible in the execution context where the API client is initialized.
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const getCulturalInsight = async (productName: string, productContext?: string): Promise<string> => {
-  if (!ai) {
-    return "AI Assistant is currently unavailable. Please check configuration.";
-  }
-
   try {
     const model = 'gemini-3-flash-preview';
     const prompt = `
