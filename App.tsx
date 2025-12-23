@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { StoreProvider } from './context/StoreContext';
 import Layout from './components/Layout';
 import Home from './pages/Home';
@@ -15,7 +15,7 @@ import Orders from './pages/Orders';
 const App: React.FC = () => {
   return (
     <StoreProvider>
-      <BrowserRouter>
+      <HashRouter>
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -31,7 +31,7 @@ const App: React.FC = () => {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Layout>
-      </BrowserRouter>
+      </HashRouter>
     </StoreProvider>
   );
 };
